@@ -1,17 +1,19 @@
+import ExpenseList from "./pages/ExpenseList";
 import ExpenseTrackerForm from "./pages/ExpenseTrackerForm";
 
 function App() {
-
   return (
-  
-      <section className=" flex justify-center items-center">
-        <div>
-          <div>
-            <h1 className="text-green">Expense Tracker</h1>
-          </div>
-       <ExpenseTrackerForm />
+    <section className=" flex justify-center items-center">
+      <div>
+        <div className="p-4">
+         <ExpenseTrackerForm />
         </div>
-      </section>
+        <div className="p-4">
+
+        <ExpenseList />
+        </div>
+      </div>
+    </section>
   );
 }
 

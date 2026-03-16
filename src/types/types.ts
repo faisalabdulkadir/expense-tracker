@@ -14,3 +14,5 @@ export type StatusOptions = {
   key: Status;
   label: Capitalize<Status>;
 };
+
+export type StatusColour = Record<Expense["status"], "success" | "danger">;

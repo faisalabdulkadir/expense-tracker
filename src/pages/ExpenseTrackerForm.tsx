@@ -51,7 +51,7 @@ export default function ExpenseTrackerForm() {
             setAction(`submit ${JSON.stringify(data)}`);
           }}
         >
-          <div className="flex gap-4">
+          <div className="flex gap-4 w-full">
             <Input
               isRequired
               errorMessage="Please enter a valid title"

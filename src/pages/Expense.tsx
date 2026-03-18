@@ -59,7 +59,7 @@ export const Expenses = ({
             <div className="relative flex items-center gap-2">
               <Tooltip content="Toggle status">
                 <span className="text-lg text-default-400 cursor-pointer active:opacity-50">
-                  <ToggleIcon />
+                  <ToggleIcon expense={expenses} />
                 </span>
               </Tooltip>
               <Tooltip content="Edit expense">
@@ -84,33 +84,33 @@ export const Expenses = ({
   return (
     <div>
       <CardBody>
-           <div className="flex gap-4">
-        <Select
-          className="max-w-xs"
-          label="Fiter by status"
-          placeholder="Select a status"
-          // selectedKeys={[value]}
-          variant="bordered"
-          // onChange={handleSelectionChange}
-        >
-          {statuses.map((status) => (
-            <SelectItem key={status.key}>{status.label}</SelectItem>
-          ))}
-        </Select>
+        <div className="flex gap-4">
+          <Select
+            className="max-w-xs"
+            label="Fiter by status"
+            placeholder="Select a status"
+            // selectedKeys={[value]}
+            variant="bordered"
+            // onChange={handleSelectionChange}
+          >
+            {statuses.map((status) => (
+              <SelectItem key={status.key}>{status.label}</SelectItem>
+            ))}
+          </Select>
 
-        <Select
-          className="max-w-xs"
-          label="Fiter by status"
-          placeholder="Select a status"
-          // selectedKeys={[value]}
-          variant="bordered"
-          // onChange={handleSelectionChange}
-        >
-          {categories.map((category) => (
-            <SelectItem key={category.key}>{category.label}</SelectItem>
-          ))}
-        </Select>
-      </div>
+          <Select
+            className="max-w-xs"
+            label="Fiter by status"
+            placeholder="Select a status"
+            // selectedKeys={[value]}
+            variant="bordered"
+            // onChange={handleSelectionChange}
+          >
+            {categories.map((category) => (
+              <SelectItem key={category.key}>{category.label}</SelectItem>
+            ))}
+          </Select>
+        </div>
         <Table aria-label="Example table with custom cells">
           <TableHeader columns={columns}>
             {(column) => (

@@ -1,8 +1,16 @@
 import { Switch } from "@heroui/react";
-import React from "react";
+import type { Expense } from "../types/types";
+import { useDispatch } from "react-redux";
+import { toggleExpense } from "../features/expense/expenseSlice";
 
-export const ToggleIcon = (props: any) => {
-  const [isSelected, setIsSelected] = React.useState(true);
+export const ToggleIcon = ({ expense }: { expense: Expense }) => {
+  // const [isSelected, setIsSelected] = React.useState(true);
+  console.log({ expense });
+  const dispatch = useDispatch();
+
+  const handleToggleStatus = () => {
+    dispatch(toggleExpense(expense.id as string));
+  };
 
   return (
     // <svg
@@ -15,12 +23,15 @@ export const ToggleIcon = (props: any) => {
     //   width="1em"
     //   {...props}
     // >
-      <div className="flex flex-col gap-2">
-        <Switch isSelected={isSelected} onValueChange={setIsSelected}/>
-        {/* <p className="text-small text-default-500">
+    <div className="flex flex-col gap-2">
+      <Switch
+        isSelected={expense.status === "paid"}
+        onValueChange={handleToggleStatus}
+      />
+      {/* <p className="text-small text-default-500">
           Selected: {isSelected ? "true" : "false"}
         </p> */}
-      </div>
+    </div>
     // </svg>
   );
 };

@@ -1,7 +1,9 @@
-import { Card, CardHeader, Divider} from "@heroui/react";
+import { Card, CardHeader, Divider } from "@heroui/react";
 import type { StatusColour } from "../types/types";
-import { columns, expenses } from "../data/data";
+import { columns } from "../data/data";
 import { Expenses } from "./Expense";
+import { useSelector } from "react-redux";
+import type { RootState } from "../app/store";
 
 const statusColorMap: StatusColour = {
   paid: "success",
@@ -9,6 +11,7 @@ const statusColorMap: StatusColour = {
 };
 
 const ExpenseList = () => {
+  const expenses = useSelector((state: RootState) => state.expenses.expenses);
   return (
     <Card>
       <CardHeader className="flex justify-center">

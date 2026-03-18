@@ -12,6 +12,8 @@ import {
 } from "@heroui/react";
 import { categories, statuses } from "../data/data";
 import type { Expense } from "../types/types";
+import { useDispatch } from "react-redux";
+import { addExpense } from "../features/expense/expenseSlice";
 
 export default function ExpenseTrackerForm() {
   const [action, setAction] = React.useState<string | null>(null);
@@ -21,6 +23,20 @@ export default function ExpenseTrackerForm() {
     status: "paid",
     category: "",
   });
+
+  const dispatch = useDispatch();
+
+  const handleAddExpense =
+    (expense: Expense) => (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      dispatch(addExpense(expense));
+      setFormData({
+        title: "",
+        amount: 0,
+        status: "paid",
+        category: "",
+      });
+    };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>,
@@ -44,12 +60,13 @@ export default function ExpenseTrackerForm() {
         <Form
           className="w-full gap-4 p-4"
           onReset={() => setAction("reset")}
-          onSubmit={(e) => {
-            e.preventDefault();
-            let data = Object.fromEntries(new FormData(e.currentTarget));
+          // onSubmit={(e) => {
+          //   e.preventDefault();
+          //   let data = Object.fromEntries(new FormData(e.currentTarget));
 
-            setAction(`submit ${JSON.stringify(data)}`);
-          }}
+          //   setAction(`submit ${JSON.stringify(data)}`);
+          // }}
+          onSubmit={handleAddExpense(formData)}
         >
           <div className="flex gap-4 w-full">
             <Input

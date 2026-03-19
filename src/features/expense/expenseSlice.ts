@@ -36,9 +36,31 @@ export const expenseSlice = createSlice({
         expense.status = expense.status === "paid" ? "unpaid" : "paid";
       }
     },
+    updateExpense: (
+      state,
+      action: PayloadAction<{ id: string; title: string }>,
+    ) => {
+      const expense = state.expenses.find(
+        (exp) => exp.id === action.payload.id,
+      );
+      if (expense) {
+        expense.title = action.payload.title;
+      }
+    },
+    deleteExpense: (state, action: PayloadAction<{ id: string }>) => {
+      const expense = state.expenses.find(
+        (exp) => exp.id === action.payload.id,
+      );
+      if (expense) {
+        state.expenses = state.expenses.filter(
+          (exp) => exp.id !== action.payload.id,
+        );
+      }
+    },
   },
 });
 
-export const { addExpense, toggleExpense } = expenseSlice.actions;
+export const { addExpense, toggleExpense, updateExpense, deleteExpense } =
+  expenseSlice.actions;
 
 export default expenseSlice.reducer;

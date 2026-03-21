@@ -11,8 +11,8 @@ export interface Expense {
 }
 
 export type StatusOptions = {
-  key: Status;
-  label: Capitalize<Status>;
+  key: Status | "all";
+  label: Capitalize<Status | "all">;
 };
 
 export type StatusColour = Record<Expense["status"], "success" | "danger">;

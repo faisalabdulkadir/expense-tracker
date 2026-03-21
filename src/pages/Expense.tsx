@@ -16,12 +16,13 @@ import { ToggleIcon } from "../components/ToggleIcon";
 import { EditIcon } from "../components/EditIcon";
 import { DeleteIcon } from "../components/DeleteIcon";
 import type { Expense, StatusColour } from "../types/types";
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { categories, statuses } from "../data/data";
 import { useDispatch } from "react-redux";
-import { deleteExpense, updateExpense } from "../features/expense/expenseSlice";
+import { deleteExpense, filterByStatus, updateExpense } from "../features/expense/expenseSlice";
 import { SaveIcon } from "../components/SaveIcon ";
 import { CancelIcon } from "../components/CancelIcon ";
+import type { PayloadAction } from "@reduxjs/toolkit";
 
 type ExpensesProp = {
   columns: Record<string, string>[];
@@ -50,6 +51,12 @@ export const Expenses = ({
       return { ...prev, title: value };
     });
   };
+
+  const handleSelectionChange =
+    (action: (value: string) => PayloadAction<string>) =>
+    (e: React.ChangeEvent<HTMLSelectElement>) => {
+      dispatch(action(e.target.value));
+    };
 
   const handleDeleteExpense = (id: string) => {
     dispatch(deleteExpense({ id }));
@@ -169,7 +176,7 @@ export const Expenses = ({
             placeholder="Select a status"
             // selectedKeys={[value]}
             variant="bordered"
-            // onChange={handleSelectionChange}
+            onChange={handleSelectionChange(filterByStatus)}
           >
             {statuses.map((status) => (
               <SelectItem key={status.key}>{status.label}</SelectItem>
@@ -178,8 +185,8 @@ export const Expenses = ({
 
           <Select
             className="max-w-xs"
-            label="Fiter by status"
-            placeholder="Select a status"
+            label="Fiter by category"
+            placeholder="Select a category"
             // selectedKeys={[value]}
             variant="bordered"
             // onChange={handleSelectionChange}

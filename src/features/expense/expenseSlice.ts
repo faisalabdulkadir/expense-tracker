@@ -57,10 +57,16 @@ export const expenseSlice = createSlice({
         );
       }
     },
+    filterByStatus: (state, action: PayloadAction<string>) => {
+      state.expenses =
+        action.payload === "all"
+          ? state.allExpenses
+          : state.allExpenses.filter((exp) => exp.status === action.payload);
+    },
   },
 });
 
-export const { addExpense, toggleExpense, updateExpense, deleteExpense } =
+export const { addExpense, toggleExpense, updateExpense, deleteExpense, filterByStatus } =
   expenseSlice.actions;
 
 export default expenseSlice.reducer;

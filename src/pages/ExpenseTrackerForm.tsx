@@ -60,12 +60,6 @@ export default function ExpenseTrackerForm() {
         <Form
           className="w-full gap-4 p-4"
           onReset={() => setAction("reset")}
-          // onSubmit={(e) => {
-          //   e.preventDefault();
-          //   let data = Object.fromEntries(new FormData(e.currentTarget));
-
-          //   setAction(`submit ${JSON.stringify(data)}`);
-          // }}
           onSubmit={handleAddExpense(formData)}
         >
           <div className="flex gap-4 w-full">

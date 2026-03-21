@@ -44,7 +44,8 @@ export const categories: Category[] = [
   { key: "transport", label: "Transport" },
 ];
 
-export const statuses: StatusOptions[] = [
+export const statuses: StatusOptions[]  = [
+  { key: "all", label: "All" },
   { key: "paid", label: "Paid" },
   { key: "unpaid", label: "Unpaid" },
 ];

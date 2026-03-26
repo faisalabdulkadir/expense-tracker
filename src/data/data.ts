@@ -39,6 +39,7 @@ export const expenses: Expense[] = [
 ];
 
 export const categories: Category[] = [
+  {key: "all", label: "All"},
   { key: "food", label: "Food" },
   { key: "shopping", label: "Shopping" },
   { key: "transport", label: "Transport" },

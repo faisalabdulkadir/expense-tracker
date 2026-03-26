@@ -19,7 +19,12 @@ import type { Expense, StatusColour } from "../types/types";
 import React, { useCallback, useState } from "react";
 import { categories, statuses } from "../data/data";
 import { useDispatch } from "react-redux";
-import { deleteExpense, filterByStatus, updateExpense } from "../features/expense/expenseSlice";
+import {
+  deleteExpense,
+  filterByCategory,
+  filterByStatus,
+  updateExpense,
+} from "../features/expense/expenseSlice";
 import { SaveIcon } from "../components/SaveIcon ";
 import { CancelIcon } from "../components/CancelIcon ";
 import type { PayloadAction } from "@reduxjs/toolkit";
@@ -189,7 +194,7 @@ export const Expenses = ({
             placeholder="Select a category"
             // selectedKeys={[value]}
             variant="bordered"
-            // onChange={handleSelectionChange}
+            onChange={handleSelectionChange(filterByCategory)}
           >
             {categories.map((category) => (
               <SelectItem key={category.key}>{category.label}</SelectItem>

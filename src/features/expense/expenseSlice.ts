@@ -63,10 +63,22 @@ export const expenseSlice = createSlice({
           ? state.allExpenses
           : state.allExpenses.filter((exp) => exp.status === action.payload);
     },
+    filterByCategory: (state, action: PayloadAction<string>) => {
+      state.expenses =
+        action.payload === "all"
+          ? state.allExpenses
+          : state.allExpenses.filter((exp) => exp.category === action.payload);
+    },
   },
 });
 
-export const { addExpense, toggleExpense, updateExpense, deleteExpense, filterByStatus } =
-  expenseSlice.actions;
+export const {
+  addExpense,
+  toggleExpense,
+  updateExpense,
+  deleteExpense,
+  filterByStatus,
+  filterByCategory,
+} = expenseSlice.actions;
 
 export default expenseSlice.reducer;
